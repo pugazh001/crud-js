@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Medicine Table</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary" id="main-navbar" data-bs-theme="light">
+  <div class="container-fluid">
+    <a class="navbar-brand clickable" href="home.html">MedicineApp</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item"><a href="home.html" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="myproducts.html" class="nav-link">My Products</a></li>
+        <li class="nav-item"><a href="medicinetable.html" class="nav-link active">Medicine Table</a></li>
+        <li class="nav-item"><a href="profile.html" class="nav-link">Profile</a></li>
+      </ul>
+      <div class="d-flex align-items-center gap-3">
+        <button class="btn btn-outline-secondary btn-sm" id="theme-toggle" title="Toggle Dark/Light Mode">🌙</button>
+        <span id="user-name" class="fw-semibold"></span>
+        <button class="btn btn-danger btn-sm" id="logout-btn">Logout</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-4">
+  <h2>Medicine Table</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Medicine Name</th>
+        <th>Use</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Paracetamol</td><td>Pain relief</td><td>$5</td></tr>
+      <tr><td>Ibuprofen</td><td>Anti-inflammatory</td><td>$8</td></tr>
+      <tr><td>Amoxicillin</td><td>Antibiotic</td><td>$15</td></tr>
+      <tr><td>Omeprazole</td><td>Acid reducer</td><td>$12</td></tr>
+      <tr><td>Vitamin C</td><td>Immune support</td><td>$7</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<script src="js/medicinetable.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
