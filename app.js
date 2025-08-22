@@ -32,27 +32,47 @@ if(localStorage.getItem('loggedIn') !== 'true') {
   }
   
   // Render 5 medicine cards on home page
-  function loadHomeCards() {
-    const cardsData = [
-      { title: 'Paracetamol', text: 'Pain relief medicine' },
-      { title: 'Ibuprofen', text: 'Anti-inflammatory' },
-      { title: 'Amoxicillin', text: 'Antibiotic' },
-      { title: 'Omeprazole', text: 'Acid reducer' },
-      { title: 'Vitamin C', text: 'Immune support' }
-    ];
-    const container = document.getElementById('home-cards');
-    cardsData.forEach(card => {
-      const div = document.createElement('div');
-      div.className = 'col-md-4 col-lg-2 card-col';
-      div.innerHTML = `<div class="card h-100 shadow-sm">
-        <div class="card-body">
-          <h5 class="card-title">${card.title}</h5>
-          <p class="card-text">${card.text}</p>
-        </div>
-      </div>`;
-      container.appendChild(div);
+function loadHomeCards() {
+  const container = document.getElementById('home-cards');
+
+  // Clear existing cards if any
+  container.innerHTML = '';
+
+  fetch('http://136.185.14.8:6565/api/products')
+    .then(response => {
+      if (!response.ok) throw new Error('Network response was not ok');
+      return response.json();
+    })
+    .then(data => {
+      const products = data.products || [];
+
+      if (products.length === 0) {
+        container.innerHTML = '<p>No products found.</p>';
+        return;
+      }
+
+      products.forEach(product => {
+        const div = document.createElement('div');
+        div.className = 'col-md-4 col-lg-2 card-col';
+
+        div.innerHTML = `
+          <div class="card h-100 shadow-sm">
+            <img src="http://136.185.14.8:6565/uploads/${product.image}" class="card-img-top" alt="${product.name}">
+            <div class="card-body">
+              <h5 class="card-title">${product.name}</h5>
+              <p class="card-text">Price: $${product.price}</p>
+            </div>
+          </div>
+        `;
+
+        container.appendChild(div);
+      });
+    })
+    .catch(error => {
+      console.error('Failed to fetch products:', error);
+      container.innerHTML = '<p>Failed to load products.</p>';
     });
-  }
-  
+}
+
   loadHomeCards();
   
